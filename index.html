@@ -38,8 +38,11 @@ async function loadGames() {
     const container = document.getElementById("games");
 
     try {
-        const result = await dbx.filesListFolder({
-            path: "/roms-pokemon"
+       console.log(result);
+container.innerHTML =
+"Found " +
+result.result.entries.length +
+" files";
         });
 
         container.innerHTML = "";
@@ -68,6 +71,9 @@ async function loadGames() {
 ```
 
 }
+
+document.getElementById("games").innerHTML =
+"Starting Dropbox...";
 
 loadGames(); </script>
 
