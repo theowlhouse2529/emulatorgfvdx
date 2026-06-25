@@ -34,10 +34,13 @@ async function test() {
         });
 
         div.innerHTML =
-            "SUCCESS!<br><br>" +
-            "Found " +
+            "SUCCESS!<br><br>Found " +
             result.result.entries.length +
-            " files.";
+            " files.<br><br>";
+
+        result.result.entries.forEach(file => {
+            div.innerHTML += file.name + "<br>";
+        });
 
     } catch (e) {
 
