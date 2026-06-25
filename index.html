@@ -11,27 +11,30 @@ body {
     color: white;
     padding: 20px;
 }
+
 a {
-    display: block;
-    color: #66ccff;
-    margin: 8px 0;
-    text-decoration: none;
+display: block;
+color: #66ccff;
+margin: 6px 0;
+text-decoration: none;
 }
-</style>
+
+a:hover {
+text-decoration: underline;
+} </style>
+
 </head>
 <body>
 
 <h1>Pokemon Library</h1>
 
-<div id="games">HELLO TEST</div>
+<div id="games">Loading games...</div>
 
 <script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
 
 <script>
 
-document.getElementById("games").innerHTML = "Script started";
-
-</script>
+const ACCESS_TOKEN = "sl.u.AGkiZTgmoqckajrumSkFFOOYKJxFOOrIerRa6ncDUpn0ZSi4W2NE6udlV7TXiwdzmdSMcJey-T3X0MgjkCHxtXZlsGyWKvCoVm-Q3tLprK6el9b9oBAbVBYvrJ0DGYnNKMKMpT8YrYU9yQBiLKX8G1VIA4coSYOnxWkyyY5BcxgCMSA2aiUnhvOlFM-ZfJgHzAfH1jz16S-rjKPG7lM6Azf3GWmP0aTKYxyxdMJpxAGd8aC-pMSAJT8q6USauQUkVKeyZePswywQRV27BBcaWT6A_gybYEdlVy1eut6OOa8tZFh8QX_UpPxWKl12qimj5nyQBmxgVahr7QYFzeS9YFDgV0ev1KG8S6Nmmey23Jo8zLEWBHfNu11y8cd9ocbh-eD-ncDnph4xALXGZLx_pvXLH6eXfGuGIfpzrtXmHWrQXzpF0zv4j--JeGUPeD1MFm-u0_ec9W6hY2Fndg-RlK7Y00mQxDabBN9kM5PvjxY5-F47q_GDyYZkHjwZsh9uevMjZUWfYDPT5zYltQc87ef9IzN8K8CepXh-VTA4Xg65pYJ5cl3mHy0gmm-ylRj5zDau5AsZJ5AIhmK0ZNSWMs_QpxBeZkMZPsorlzqa3Kv41jasEp3lPksT_miwKrCn2nLrkmUpb1DDv1zkdVLjzW9BZEQ7BuPshE1Z0YOY-NMMTmfjHRb2vjPbn4YgIIjVjYPzGgithMeyntShT27zl826NHrfduCcdVG38JotK7iQOl59WNcJnzkzkQuGawePVcxHC5Gy1Dz028fqa31JoOuvcr_jKDO_KFaYUvZvo5ZWgvJu0hfo23HW6aCalRfd5HVQhRGQjpDxxQ6saf574RCSiPmhITGyC8dKcJ3iUgHWp31_ML6DKnmBWJSpU2WD0WG9lt1-Nk5NomUl9sKh_58e248sFGG7YbBkn7unv7hRyEOSUcK4qDKZ__cXqpBNLL_zvuC3zEMooUnof-BO1-McT_S4T4ov4xai8nsx1xWZMsh9FP_pSS6XH2LGgU4RBaB38gpMKrHE4xkiSMsKxCOT8VDE8Tq-dMhcIYW6Q0s4BPGxJAMb9w4zc2-33G29P35JSBheapbaacPK4qsFYrS0RlCvXA7aAZwXT97xsAbFsqSqwlJOdA0kt-n7Nxd0Upet9JXbrBxJcLFA207XDRcAHX1twyAhgMIk4osUOQZgDhOULy-W4hDDmVJLTznvRBE4VChu-CKC9bTonc5UoOBbbaxjiuQJy3hzkhVXYZiQmayusotZ9WJIAsh68i2Fh35_JE8knQx5hpZx3Yfz_Bps_tc8QPR6OEQoC2BhU-r0Wu4UXCqNz8nSoyTLkxCClxTgYfpQmCKezlZuhRvhNCL1BSoBw52EIN3uzFvDdTVCKvZ6M_10eL_BeeQF10FYZgdc8bMjB8u-KH2_AyiDIUAxhjqXixjpiCT7tm8YJtnaZw";
 
 const dbx = new Dropbox.Dropbox({
     accessToken: ACCESS_TOKEN
@@ -63,10 +66,16 @@ async function loadGames() {
 
         });
 
+        if (container.innerHTML === "") {
+            container.innerHTML = "No ZIP files found.";
+        }
+
     } catch (e) {
 
         container.innerHTML =
-            "<pre>" + JSON.stringify(e, null, 2) + "</pre>";
+            "<pre>" +
+            JSON.stringify(e, null, 2) +
+            "</pre>";
 
 ```
 }
@@ -74,8 +83,9 @@ async function loadGames() {
 
 }
 
-loadGames(); </script>
+loadGames();
+
+</script>
 
 </body>
 </html>
-
