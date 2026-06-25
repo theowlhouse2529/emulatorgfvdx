@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Pokemon Library</title></head>
+<body>
+<h1>Pokemon Library</h1>
+<div id="games">Starting...</div>
+<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
+<script>
+const ACCESS_TOKEN="PASTE_YOUR_NEW_DROPBOX_TOKEN_HERE";
+const dbx=new Dropbox.Dropbox({accessToken:ACCESS_TOKEN});
+async function loadGames(){
+ const div=document.getElementById("games");
+ div.textContent="Calling Dropbox...";
+ try{
+  const result=await dbx.filesListFolder({path:"/roms/pokemon"});
+  div.innerHTML="";
+  result.result.entries.filter(f=>f.name.toLowerCase().endsWith(".zip")).forEach(f=>{
+    const a=document.createElement("a");
+    a.textContent=f.name;
+    a.href="#";
+    div.appendChild(a);
+    div.appendChild(document.createElement("br"));
+  });
+ }catch(e){
+  div.innerHTML="<pre>"+JSON.stringify(e,null,2)+"</pre>";
+ }
+}
+loadGames();
+</script>
+</body></html>
