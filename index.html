@@ -3,14 +3,45 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Pokemon Library</title>
+<title>Dropbox Test</title>
 </head>
 <body>
 
-<h1>Pokemon Library</h1>
+<h1>Dropbox Test</h1>
 
-<div id="games">Connecting to Dropbox...</div>
+<div id="games">Connecting...</div>
+
+<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
+
+<script>
+const ACCESS_TOKEN = "u3oqlrdnym31tp2";
+
+const dbx = new Dropbox.Dropbox({
+  accessToken: ACCESS_TOKEN
+});
+
+async function test() {
+  const div = document.getElementById("games");
+
+  try {
+    const result = await dbx.filesListFolder({
+      path: "/roms-pokemon"
+    });
+
+    div.innerHTML =
+      "SUCCESS<br><br>" +
+      JSON.stringify(result.result.entries, null, 2);
+
+  } catch (e) {
+    div.innerHTML =
+      "<pre>" +
+      JSON.stringify(e, null, 2) +
+      "</pre>";
+
+}
+}
+
+test(); </script>
 
 </body>
 </html>
-
